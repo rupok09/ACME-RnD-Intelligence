@@ -480,7 +480,7 @@ if st.session_state.page == "Home":
                 <div class="brand-icon">🧪</div>
                 <div>
                     <div class="brand-title">The ACME Laboratories Ltd</div>
-                    <div class="brand-sub">RESEARCH • INNOVATION • EXCELLENCE</div>
+                    <div class="brand-sub">For Health • Vigour • and Happiness</div>
                 </div>
             </div>
             <div class="top-menu">
@@ -724,7 +724,7 @@ elif st.session_state.page == "Drug-Excipient Compatibility":
 st.markdown(
     """
     <div class="footer">
-        © 2026 The ACME Laboratories Ltd — Research & Development Division.
+        ©2026 ACME Laboratories Ltd — Research & Development Division.
     </div>
     """,
     unsafe_allow_html=True
