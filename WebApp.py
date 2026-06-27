@@ -54,15 +54,9 @@ def detect_api_name(text):
         "Clarithromycin",
         "Azithromycin",
         "Paracetamol",
-        "Acetaminophen",
         "Metformin HCl",
         "Metformin",
-        "Ibuprofen",
-        "Aspirin",
         "Losartan",
-        "Atorvastatin",
-        "Ciprofloxacin",
-        "Amoxicillin"
     ]
 
     lower_text = text.lower()
@@ -462,7 +456,7 @@ with st.sidebar:
         """
         <div class="sidebar-card">
             <b>R&D Intelligence Hub</b><br><br>
-            A modular AI platform for API characterization, preformulation design, and compatibility assessment.
+            A modular AI platform for API characterization, preformulation design, and drug-excipient compatibility assessment.
         </div>
         """,
         unsafe_allow_html=True
@@ -473,31 +467,38 @@ with st.sidebar:
 
 if st.session_state.page == "Home":
 
+    # 1. Create a header structure using native Streamlit columns
+    logo_col, title_col = st.columns([1, 4])
+
+    with logo_col:
+        # Streamlit reads local paths natively without security errors
+        st.image("assets/acme_logo.png", use_container_width=True)
+
+    with title_col:
+        st.markdown("""
+            <div style="padding-top: 10px;">
+                <h2 style="color: #0b2c5f; margin: 0;">ACME Laboratories Ltd.</h2>
+                <p style="color: #5c768d; font-style: italic; margin: 0;">For Health • Vigour • and Happiness</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+    # 2. Render the top menu and hero banner below it
     st.markdown(
         """
-        <div class="top-header">
-            <div class="brand-box">
-                <div class="brand-icon">🧪</div>
-                <div>
-                    <div class="brand-title">The ACME Laboratories Ltd</div>
-                    <div class="brand-sub">For Health • Vigour • and Happiness</div>
-                </div>
-            </div>
-            <div class="top-menu">
-                <div>Home</div>
-                <div>API Characterization</div>
-                <div>Preformulation Design</div>
-                <div>Drug-Excipient Compatibility</div>
-            </div>
+        <div class="top-menu" style="margin-top: 20px; border-top: 1px solid #e5e7eb; padding-top: 15px;">
+            <span style="margin-right: 20px; font-weight: bold; color: #6d28d9;">Home</span>
+            <span style="margin-right: 20px;">API Characterization</span>
+            <span style="margin-right: 20px;">Preformulation Design</span>
+            <span>Drug-Excipient Compatibility</span>
         </div>
 
-        <div class="hero">
+        <div class="hero" style="margin-top: 30px;">
             <div class="hero-title">
                 Advancing Health<br>
                 Through <span>Research & Innovation</span>
             </div>
             <div class="hero-text">
-                The ACME Laboratories Ltd is committed to delivering high-quality pharmaceutical solutions
+                The ACME Laboratories Ltd. is committed to delivering high-quality pharmaceutical solutions
                 through science, collaboration, innovation and excellence.
             </div>
         </div>
@@ -583,7 +584,7 @@ elif st.session_state.page == "API Characterization":
         st.rerun()
 
     st.title("🧪 API Characterization")
-    st.write("Upload a patent/SDS/monograph PDF or search an API from trusted web sources.")
+    st.write("Upload a patent/article/DMF PDF or search an API from trusted web sources.")
 
     left, middle, right = st.columns([1.05, 0.15, 1.05])
 
@@ -591,7 +592,7 @@ elif st.session_state.page == "API Characterization":
         st.markdown(
             """
             <div class="api-card">
-                <div class="api-card-title">📄 Upload Patent / SDS / Monograph</div>
+                <div class="api-card-title">📄 Upload Patent / Article / Monograph</div>
                 <div class="api-card-text">
                     Upload a PDF file. The system will detect the API name and retrieve structured property data.
                 </div>
@@ -630,7 +631,7 @@ elif st.session_state.page == "API Characterization":
 
         api_name = st.text_input(
             "API Name",
-            placeholder="e.g. Clarithromycin, Paracetamol, Ibuprofen"
+            placeholder="e.g. Clarithromycin, Metformin, Losartan"
         )
 
         search_clicked = st.button("Search API")
@@ -644,7 +645,7 @@ elif st.session_state.page == "API Characterization":
             result = get_pubchem_data(api_name)
 
             if result is None:
-                st.error("No data found. Try: Clarithromycin, Paracetamol, Ibuprofen, Metformin.")
+                st.error("No data found.")
             else:
                 st.success(f"Successfully retrieved data for: {api_name}")
 
@@ -704,7 +705,7 @@ elif st.session_state.page == "Preformulation Design":
         st.rerun()
 
     st.title("⚗️ Preformulation Design")
-    st.info("This module will be developed in Phase 2.")
+    st.info("Under development.")
 
 
 # ================= PAGE 4: COMPATIBILITY =================
@@ -716,7 +717,7 @@ elif st.session_state.page == "Drug-Excipient Compatibility":
         st.rerun()
 
     st.title("🧩 Drug-Excipient Compatibility")
-    st.info("This module will be developed in Phase 2.")
+    st.info("Under development.")
 
 
 # ================= FOOTER =================
@@ -724,7 +725,7 @@ elif st.session_state.page == "Drug-Excipient Compatibility":
 st.markdown(
     """
     <div class="footer">
-        ©2026 ACME Laboratories Ltd — Research & Development Division.
+        ©2026 ACME Laboratories Ltd. — Research & Development Division.
     </div>
     """,
     unsafe_allow_html=True
